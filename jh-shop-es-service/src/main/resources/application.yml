@@ -1,0 +1,31 @@
+spring:
+  application:
+    name: jh-shop-es-service
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+    sentinel:
+      transport:
+        dashboard: localhost:8080  # Sentinel Dashboard ??
+
+feign:
+  sentinel:
+    enabled: true  # ?? Feign ? Sentinel ??
+  client:
+    config:
+      default:
+        connectTimeout: 5000  # ????
+        readTimeout: 5000     # ????
+
+server:
+#  ???????
+  port: 8081
+
+logging:
+  level:
+    org.springframework: DEBUG
+    pers.jhshop.user: DEBUG
+    feign: DEBUG                # Feign?????
+    com.alibaba.csp.sentinel: DEBUG  # ????Sentinel
+    org.springframework.cloud.openfeign: DEBUG

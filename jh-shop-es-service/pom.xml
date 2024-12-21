@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>pers.jhshop</groupId>
+        <artifactId>jh-shop-es</artifactId>
+        <version>1.0.0</version>
+    </parent>
+
+    <groupId>pers.chenjiahao</groupId>
+    <artifactId>jh-shop-es-service</artifactId>
+    <name>jh-shop-es-service</name>
+    <version>0.0.1-SNAPSHOT</version>
+
+    <dependencies>
+        <dependency>
+            <groupId>pers.jhshop</groupId>
+            <artifactId>jh-shop-es-api</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
+        <!-- Spring Data Elasticsearch -->
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-elasticsearch</artifactId>
+<!--            <version>3.2.6</version> &lt;!&ndash; 适配Spring Boot 2.4.x &ndash;&gt;-->
+        </dependency>
+
+        <dependency>
+            <groupId>org.elasticsearch</groupId>
+            <artifactId>elasticsearch</artifactId>
+            <version>7.8.0</version>
+        </dependency>
+        <!-- elasticsearch的客户端 -->
+
+        <!-- https://mvnrepository.com/artifact/org.elasticsearch.client/elasticsearch-rest-high-level-client -->
+        <dependency>
+            <groupId>org.elasticsearch.client</groupId>
+            <artifactId>elasticsearch-rest-high-level-client</artifactId>
+            <version>7.8.0</version>
+        </dependency>
+
+    </dependencies>
+
+</project>
