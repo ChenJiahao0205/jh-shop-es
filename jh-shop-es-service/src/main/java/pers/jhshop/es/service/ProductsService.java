@@ -22,4 +22,6 @@ public interface ProductsService {
     Page<EsProductsEntity> pageBiz(EsProductsQueryReq queryReq);
 
     void batchInsertOrUpdate(List<EsProductsCreateOrUpdateReq> dataList);
+
+    List<EsProductsEntity> list(EsProductsQueryReq queryReq);
 }

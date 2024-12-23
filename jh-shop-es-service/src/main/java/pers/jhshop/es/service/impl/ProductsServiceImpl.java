@@ -62,6 +62,11 @@ public class ProductsServiceImpl implements ProductsService {
         esProductsServiceRestTemplateService.batchInsertOrUpdate(esProductsEntities);
     }
 
+    @Override
+    public List<EsProductsEntity> list(EsProductsQueryReq queryReq) {
+        return esProductsServiceRestTemplateService.list(queryReq);
+    }
+
     private EsProductsEntity convertReqToEntity(EsProductsCreateOrUpdateReq data) {
         EsProductsEntity esProductsEntity = new EsProductsEntity();
         BeanUtil.copyProperties(data, esProductsEntity, "createdAt", "updatedAt", "createTime", "updateTime");

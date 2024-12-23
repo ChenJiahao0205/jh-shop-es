@@ -1,6 +1,12 @@
 spring:
   application:
     name: jh-shop-es-service
+#    TODO 后续解决一下不配置报错的问题 不需要数据库
+  datasource:
+    url: jdbc:mysql://localhost:3306/jh_shop_discount?allowPublicKeyRetrieval=true&characterEncoding=UTF-8&useSSL=false&allowMultiQueries=true
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
   cloud:
     nacos:
       discovery:
@@ -28,8 +34,7 @@ feign:
         readTimeout: 5000     # ????
 
 server:
-#  ???????
-  port: 8081
+  port: 8083
 
 logging:
   level:
