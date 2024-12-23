@@ -12,6 +12,8 @@ import pers.jhshop.es.model.req.EsProductsQueryReq;
 import pers.jhshop.es.model.vo.EsProductsQueryVo;
 import pers.jhshop.es.service.ProductsService;
 
+import java.util.List;
+
 /**
  * 商品信息控制层
  * @author ChenJiahao(五条)
@@ -28,6 +30,12 @@ public class ProductsController {
     @PostMapping("createOrUpdate")
     public ResultBo createOrUpdate(@RequestBody EsProductsCreateOrUpdateReq createReq) {
         productsService.createOrUpdateBiz(createReq);
+        return ResultBo.success();
+    }
+
+    @PostMapping("batchInsertOrUpdate")
+    public ResultBo batchInsertOrUpdate(@RequestBody List<EsProductsCreateOrUpdateReq> dataList) {
+        productsService.batchInsertOrUpdate(dataList);
         return ResultBo.success();
     }
 

@@ -5,6 +5,7 @@ import cn.hutool.core.date.DateUtil;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pers.jhshop.common.utils.JhShopDateUtil;
@@ -33,16 +34,7 @@ public class ProductsServiceImpl implements ProductsService {
 
     @Override
     public void createOrUpdateBiz(EsProductsCreateOrUpdateReq createReq) {
-        // req转换为Entity
-        EsProductsEntity esProductsEntity = new EsProductsEntity();
-        BeanUtil.copyProperties(createReq, esProductsEntity, "createdAt", "updatedAt", "createTime", "updateTime");
-        // 特殊字段处理
-        esProductsEntity.setCreatedAt(JhShopDateUtil.getStrTime(createReq.getCreatedAt()));
-        esProductsEntity.setUpdatedAt(JhShopDateUtil.getStrTime(createReq.getUpdatedAt()));
-        esProductsEntity.setCreateTime(JhShopDateUtil.getStrTime(createReq.getCreateTime()));
-        esProductsEntity.setUpdateTime(JhShopDateUtil.getStrTime(createReq.getUpdateTime()));
-
-        esProductsServiceRestTemplateService.insertOrUpdate(esProductsEntity);
+        esProductsServiceRestTemplateService.insertOrUpdate(convertReqToEntity(createReq));
     }
 
     @Override
@@ -54,6 +46,31 @@ public class ProductsServiceImpl implements ProductsService {
     @Override
     public Page<EsProductsEntity> pageBiz(EsProductsQueryReq queryReq) {
         return esProductsServiceRestTemplateService.page(queryReq);
+    }
+
+    @Override
+    public void batchInsertOrUpdate(List<EsProductsCreateOrUpdateReq> dataList) {
+        if (CollectionUtils.isEmpty(dataList)){
+            return;
+        }
+
+        // 转换请求对象
+        List<EsProductsEntity> esProductsEntities = dataList.stream()
+                .map(this::convertReqToEntity)
+                .collect(Collectors.toList());
+
+        esProductsServiceRestTemplateService.batchInsertOrUpdate(esProductsEntities);
+    }
+
+    private EsProductsEntity convertReqToEntity(EsProductsCreateOrUpdateReq data) {
+        EsProductsEntity esProductsEntity = new EsProductsEntity();
+        BeanUtil.copyProperties(data, esProductsEntity, "createdAt", "updatedAt", "createTime", "updateTime");
+        // 特殊字段处理
+        esProductsEntity.setCreatedAt(JhShopDateUtil.getStrTime(data.getCreatedAt()));
+        esProductsEntity.setUpdatedAt(JhShopDateUtil.getStrTime(data.getUpdatedAt()));
+        esProductsEntity.setCreateTime(JhShopDateUtil.getStrTime(data.getCreateTime()));
+        esProductsEntity.setUpdateTime(JhShopDateUtil.getStrTime(data.getUpdateTime()));
+        return esProductsEntity;
     }
 
     /**

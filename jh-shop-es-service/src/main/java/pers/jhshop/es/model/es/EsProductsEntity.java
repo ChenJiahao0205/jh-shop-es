@@ -25,7 +25,7 @@ public class EsProductsEntity {
     /**
      * 商品名称
      */
-    @Field(type = FieldType.Keyword)
+    @Field(type = FieldType.Text)
     private String name;
 
     /**

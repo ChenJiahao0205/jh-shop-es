@@ -51,7 +51,7 @@ public class EsProductsServiceRestTemplateService extends AbstractElasticSearchR
         // 获取并判断 name
         String name = esProductsQueryReq.getName();
         if (StringUtils.isNotBlank(name)) {
-            boolQueryBuilder.filter(QueryBuilders.termQuery("name", name));
+            boolQueryBuilder.filter(QueryBuilders.matchQuery("name", name));
         }
 
         // 获取并判断 productDescription

@@ -6,6 +6,8 @@ import pers.jhshop.es.model.req.EsProductsCreateOrUpdateReq;
 import pers.jhshop.es.model.req.EsProductsQueryReq;
 import pers.jhshop.es.model.vo.EsProductsQueryVo;
 
+import java.util.List;
+
 /**
  * 商品服务类
  * @author ChenJiahao(五条)
@@ -18,4 +20,6 @@ public interface ProductsService {
     EsProductsQueryVo getByIdBiz(Long id);
 
     Page<EsProductsEntity> pageBiz(EsProductsQueryReq queryReq);
+
+    void batchInsertOrUpdate(List<EsProductsCreateOrUpdateReq> dataList);
 }
