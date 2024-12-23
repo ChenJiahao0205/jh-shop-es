@@ -7,7 +7,16 @@ spring:
         server-addr: localhost:8848
     sentinel:
       transport:
-        dashboard: localhost:8080  # Sentinel Dashboard ??
+        dashboard: localhost:8080
+  data:
+    elasticsearch:
+      cluster-name: elasticsearch
+      cluster-nodes: localhost:9200
+      rest:
+        read-timeout: 5s
+        connection-timeout: 3s
+      repositories:
+        enabled: true
 
 feign:
   sentinel:
