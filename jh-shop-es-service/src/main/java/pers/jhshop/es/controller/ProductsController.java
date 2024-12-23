@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 import pers.jhshop.common.entity.ResultBo;
 import pers.jhshop.es.consts.JhShopEsApiConstants;
+import pers.jhshop.es.model.es.EsProductsEntity;
 import pers.jhshop.es.model.req.EsProductsCreateOrUpdateReq;
 import pers.jhshop.es.model.req.EsProductsQueryReq;
 import pers.jhshop.es.model.vo.EsProductsQueryVo;
@@ -36,7 +37,7 @@ public class ProductsController {
     }
 
     @PostMapping("page")
-    public ResultBo<Page<EsProductsQueryVo>> page(@RequestBody EsProductsQueryReq queryReq) {
+    public ResultBo<Page<EsProductsEntity>> page(@RequestBody EsProductsQueryReq queryReq) {
         return ResultBo.success(productsService.pageBiz(queryReq));
     }
 

@@ -52,19 +52,8 @@ public class ProductsServiceImpl implements ProductsService {
     }
 
     @Override
-    public Page<EsProductsQueryVo> pageBiz(EsProductsQueryReq queryReq) {
-        Page<EsProductsEntity> page = esProductsServiceRestTemplateService.page(queryReq);
-        List<EsProductsQueryVo> productsQueryVoList = page.getRecords().stream()
-                .map(r -> {
-                    EsProductsQueryVo vo = convertEsProductsEntityToVo(r);
-                    return vo;
-                }).collect(Collectors.toList());
-
-        // TODO 后续修改，这里不应该多转换一次(看看能否直接修改page的泛型，如果修改不了，就延续现在的代码逻辑)
-        Page<EsProductsQueryVo> pageVo = new Page<>();
-        BeanUtil.copyProperties(page, pageVo, "records");
-        pageVo.setRecords(productsQueryVoList);
-        return pageVo;
+    public Page<EsProductsEntity> pageBiz(EsProductsQueryReq queryReq) {
+        return esProductsServiceRestTemplateService.page(queryReq);
     }
 
     /**
